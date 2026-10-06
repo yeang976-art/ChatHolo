@@ -1,5 +1,6 @@
 package com.example.visualchat.domain.user.entity;
 
+import com.example.visualchat.common.entity.BaseTimeEntity;
 import com.example.visualchat.domain.user.enums.UserRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
