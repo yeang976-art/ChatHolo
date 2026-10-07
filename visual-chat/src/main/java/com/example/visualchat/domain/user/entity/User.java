@@ -1,7 +1,7 @@
 package com.example.visualchat.domain.user.entity;
 
 import com.example.visualchat.common.entity.BaseTimeEntity;
-import com.example.visualchat.domain.user.enums.UserRole;
+import com.example.visualchat.domain.user.enums.UserGrade;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -24,7 +24,7 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String nickname;
 
     @Column(nullable = false, unique = true)
@@ -35,13 +35,13 @@ public class User extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
-    private UserRole role;
+    private UserGrade grade;
 
     @Builder
-    public User(String nickname, String email, String passwordHash, UserRole role) {
+    public User(String nickname, String email, String passwordHash) {
         this.nickname = nickname;
         this.email = email;
         this.passwordHash = passwordHash;
-        this.role = role;
+        this.grade = UserGrade.PAWN;
     }
 }
